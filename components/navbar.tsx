@@ -10,7 +10,6 @@ import getMe, { IGetMeType } from "@/services/auth.service";
 import { logout } from "@/services/logout.service";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { error } from "console";
 
 const Navbar = () => {
   const [user, setUser] = useState<IGetMeType | null>(null);
