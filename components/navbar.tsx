@@ -4,12 +4,19 @@ import { UserRound } from "lucide-react";
 import { CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
-import getMe, { IGetMeType } from "./services/auth.service";
 import Link from "next/link";
 import GetMePage from "./getMePage";
+import getMe, { IGetMeType } from "@/services/auth.service";
+import { logout } from "@/services/logout.service";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { error } from "console";
 
 const Navbar = () => {
   const [user, setUser] = useState<IGetMeType | null>(null);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     async function fetchUser() {
@@ -22,6 +29,22 @@ const Navbar = () => {
     }
     fetchUser();
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      const res = await logout();
+
+      toast.success(res.message);
+
+      setUser(null);
+      setIsOpen(false);
+
+      router.push("/login");
+    } catch (err: any) {
+      toast.error("Logout failed:", err);
+    }
+  };
+
   return (
     <>
       <div className="w-full mt-6 bg-[#3091AB] flex flex-row justify-between items-center px-4 py-2 rounded-md">
@@ -30,7 +53,11 @@ const Navbar = () => {
         </div>
         <div>
           {user ? (
-            <Button>
+            <Button
+              onClick={() => {
+                setIsOpen((prev) => !prev);
+              }}
+            >
               <UserRound color="white" />
             </Button>
           ) : (
@@ -40,7 +67,9 @@ const Navbar = () => {
           )}
         </div>
       </div>
-      {user && <GetMePage user={user} />}
+      {user && (
+        <GetMePage user={user} isOpen={isOpen} handleLogout={handleLogout} />
+      )}
     </>
   );
 };

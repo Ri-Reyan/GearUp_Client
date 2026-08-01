@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -12,8 +14,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import handleLoginSubmit from "../_action/handleLoginSubmit";
+import { useRouter } from "next/navigation";
+import { EyeClosed, EyeDashed } from "lucide-react";
+import { useState } from "react";
 
 const LoginPage = () => {
+  const router = useRouter();
+  const [isShow, setIsShow] = useState<boolean>(false);
   return (
     <Card className="w-full max-w-sm">
       <CardHeader>
@@ -23,7 +30,7 @@ const LoginPage = () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form action={handleLoginSubmit}>
+        <form action={(formData) => handleLoginSubmit(formData, router)}>
           <div className="flex flex-col gap-6">
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
@@ -39,7 +46,20 @@ const LoginPage = () => {
               <div className="flex items-center">
                 <Label htmlFor="password">Password</Label>
               </div>
-              <Input name="password" id="password" type="password" required />
+              <Input
+                name="password"
+                id="password"
+                type={`${isShow ? "text" : "password"}`}
+                required
+              />
+              <div
+                className="relative bottom-9 left-64 lg:left-72 "
+                onClick={() => {
+                  setIsShow((prev) => !prev);
+                }}
+              >
+                {isShow ? <EyeClosed /> : <EyeDashed />}
+              </div>
             </div>
             <Button type="submit" className="w-full">
               Login
