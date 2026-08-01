@@ -1,9 +1,12 @@
+import Navbar from "@/components/navbar";
 import React from "react";
 
 const PublicLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <div>Navbar Main</div>
+      <div className="px-6">
+        <Navbar />
+      </div>
       {children}
     </>
   );

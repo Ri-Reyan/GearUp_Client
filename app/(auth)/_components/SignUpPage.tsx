@@ -18,7 +18,7 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import Link from "next/link";
-import SignUpServerAction from "../_action/SignUpServerAction";
+import handleSignupSubmit from "../_action/handleSignupSubmit";
 
 const SignUpPage = () => {
   return (
@@ -30,7 +30,7 @@ const SignUpPage = () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form action={SignUpServerAction}>
+        <form action={handleSignupSubmit}>
           <div className="flex flex-col gap-6">
             <div className="grid gap-2">
               <Label htmlFor="name">Name</Label>
@@ -67,9 +67,9 @@ const SignUpPage = () => {
                 </SelectTrigger>
 
                 <SelectContent>
-                  <SelectItem value="CUSTOMER">Customer</SelectItem>
-                  <SelectItem value="PROVIDER">Provider</SelectItem>
-                  <SelectItem value="ADMIN">Admin</SelectItem>
+                  <SelectItem value="customer">Customer</SelectItem>
+                  <SelectItem value="provider">Provider</SelectItem>
+                  <SelectItem value="admin">Admin</SelectItem>
                 </SelectContent>
               </Select>
             </div>

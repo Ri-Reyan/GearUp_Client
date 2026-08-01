@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Noto_Sans, EB_Garamond } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/sonner";
 
 const ebGaramondHeading = EB_Garamond({
   subsets: ["latin"],
@@ -43,7 +44,10 @@ export default function RootLayout({
         ebGaramondHeading.variable,
       )}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <main>{children}</main>
+        <Toaster position="top-right" />
+      </body>
     </html>
   );
 }

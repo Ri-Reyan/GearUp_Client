@@ -11,7 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import LoginServerAction from "../_action/LoginServerAction";
+import handleLoginSubmit from "../_action/handleLoginSubmit";
 
 const LoginPage = () => {
   return (
@@ -23,7 +23,7 @@ const LoginPage = () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form action={LoginServerAction}>
+        <form action={handleLoginSubmit}>
           <div className="flex flex-col gap-6">
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
