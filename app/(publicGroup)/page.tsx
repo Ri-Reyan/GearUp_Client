@@ -1,5 +1,6 @@
 import axiosInstance from "@/lib/axios";
 import Image from "next/image";
+import Link from "next/link";
 
 type IGearType = {
   id: string;
@@ -56,9 +57,11 @@ const page = async () => {
                 </h3>
               </div>
 
-              <button className="w-full rounded-lg bg-sky-600 py-2 font-medium text-white transition hover:bg-sky-700">
-                View Details
-              </button>
+              <Link href={`/gear/${gear.id}`}>
+                <button className="w-full rounded-lg bg-sky-600 py-2 text-white">
+                  View Details
+                </button>
+              </Link>
             </div>
           </div>
         ))}

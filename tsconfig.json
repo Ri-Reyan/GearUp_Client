@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts"
+    "**/*.mts",
+    "app/(publicGroup)/_action/Checkout.tsx"
   ],
   "exclude": ["node_modules"]
 }

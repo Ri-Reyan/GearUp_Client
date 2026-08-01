@@ -48,7 +48,14 @@ const Navbar = () => {
     <>
       <div className="w-full mt-6 bg-[#3091AB] flex flex-row justify-between items-center px-4 py-2 rounded-md">
         <div>
-          <CardTitle className="text-2xl text-white">GEARUP.</CardTitle>
+          <CardTitle
+            onClick={() => {
+              router.push("/");
+            }}
+            className="text-2xl text-white"
+          >
+            GEARUP.
+          </CardTitle>
         </div>
         <div>
           {user ? (
