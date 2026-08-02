@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import axiosInstance from "@/lib/axios";
 import SearchBar from "./SearchBar";
+import Filter from "./Filter";
 
 export type IGearType = {
   id: string;
@@ -37,7 +38,11 @@ const GearList = () => {
 
   return (
     <div className="container mx-auto py-10">
-      <SearchBar onSearch={setGears} />
+      <div className="flex flex-row justify-around p-4 gap-x-2">
+        <SearchBar onSearch={setGears} />
+
+        <Filter onFilter={setGears} />
+      </div>
 
       <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {gears.map((gear) => (
