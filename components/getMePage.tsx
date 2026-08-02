@@ -22,7 +22,7 @@ const GetMePage = ({ user, isOpen, handleLogout }: GetMePageProps) => {
       </h1>
       <Link
         className="hover:bg-gray-400 hover:text-white p-1 rounded-md cursor-pointer"
-        href={""}
+        href={"/dashboard"}
       >
         Dashboard
       </Link>

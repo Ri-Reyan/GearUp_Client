@@ -39,6 +39,7 @@ const Navbar = () => {
       setIsOpen(false);
 
       router.push("/login");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       toast.error("Logout failed:", err);
     }

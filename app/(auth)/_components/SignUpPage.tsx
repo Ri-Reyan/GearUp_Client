@@ -19,8 +19,10 @@ import {
 } from "@/components/ui/select";
 import Link from "next/link";
 import handleSignupSubmit from "../_action/handleSignupSubmit";
+import { useRouter } from "next/navigation";
 
 const SignUpPage = () => {
+  const router = useRouter();
   return (
     <Card className="w-full max-w-sm">
       <CardHeader>
@@ -30,7 +32,11 @@ const SignUpPage = () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form action={handleSignupSubmit}>
+        <form
+          action={(formData) => {
+            handleSignupSubmit(formData, router);
+          }}
+        >
           <div className="flex flex-col gap-6">
             <div className="grid gap-2">
               <Label htmlFor="name">Name</Label>

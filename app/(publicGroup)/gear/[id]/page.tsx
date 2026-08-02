@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
 import axiosInstance from "@/lib/axios";
 import Image from "next/image";
