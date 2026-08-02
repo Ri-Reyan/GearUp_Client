@@ -10,26 +10,10 @@ const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
 );
 
-type Order = {
-  id: string;
-  amount: number;
-  transactionId: string;
-  rentalOrder: {
-    id: string;
-    quantity: number;
-    location: string;
-    returnDate: string;
-    gear: {
-      name: string;
-      description: string;
-      pictureLink: string;
-    };
-  };
-};
-
 type Props = {
-  order: Order;
+  order: any;
   clientSecret: string;
+  paymentId: string;
 };
 
 const Checkout = ({ order, clientSecret }: Props) => {
@@ -41,44 +25,38 @@ const Checkout = ({ order, clientSecret }: Props) => {
         {/* Order Summary */}
         <div className="rounded-2xl border bg-white p-6 shadow-lg">
           <Image
-            src={order.rentalOrder.gear.pictureLink}
-            alt={order.rentalOrder.gear.name}
+            src={order.gear.pictureLink}
+            alt={order.gear.name}
             width={700}
             height={500}
             className="h-80 w-full rounded-xl object-cover"
           />
 
-          <h2 className="mt-6 text-3xl font-bold">
-            {order.rentalOrder.gear.name}
-          </h2>
+          <h2 className="mt-6 text-3xl font-bold">{order.gear.name}</h2>
 
-          <p className="mt-3 text-gray-600">
-            {order.rentalOrder.gear.description}
-          </p>
+          <p className="mt-3 text-gray-600">{order.gear.description}</p>
 
           <div className="mt-8 space-y-4 rounded-xl bg-slate-100 p-5">
             <div className="flex justify-between">
               <span className="font-medium">Quantity</span>
-              <span>{order.rentalOrder.quantity}</span>
+              <span>{order.quantity}</span>
             </div>
 
             <div className="flex justify-between">
               <span className="font-medium">Return Date</span>
-              <span>
-                {new Date(order.rentalOrder.returnDate).toLocaleDateString()}
-              </span>
+              <span>{new Date(order.returnDate).toLocaleDateString()}</span>
             </div>
 
             <div className="flex justify-between">
               <span className="font-medium">Location</span>
-              <span>{order.rentalOrder.location}</span>
+              <span>{order.location}</span>
             </div>
 
             <hr />
 
             <div className="flex justify-between text-2xl font-bold text-sky-600">
               <span>Total</span>
-              <span>${order.amount}</span>
+              <span>${order.total_price}</span>
             </div>
           </div>
         </div>
@@ -87,23 +65,41 @@ const Checkout = ({ order, clientSecret }: Props) => {
         <div className="rounded-2xl border bg-white p-6 shadow-lg">
           <h2 className="mb-6 text-2xl font-bold">Payment Details</h2>
 
-          {clientSecret ? (
-            <Elements
-              stripe={stripePromise}
-              options={{
-                clientSecret,
-                appearance: {
-                  theme: "stripe",
-                },
-              }}
-            >
-              <CheckoutForm orderId={order.rentalOrder.id} />
-            </Elements>
-          ) : (
-            <div className="rounded-lg bg-red-50 p-4 text-center text-red-600">
-              Unable to initialize Stripe payment.
+          <div className="mt-6 rounded-lg border border-dashed bg-slate-50 p-4">
+            <h3 className="mb-3 font-semibold">Stripe Test Card</h3>
+
+            <div className="space-y-2 text-sm">
+              <p>
+                <span className="font-semibold">Card Number:</span>{" "}
+                <code>4242 4242 4242 4242</code>
+              </p>
+
+              <p>
+                <span className="font-semibold">Expiry:</span>{" "}
+                <code>12/34</code>
+              </p>
+
+              <p>
+                <span className="font-semibold">CVC:</span> <code>123</code>
+              </p>
+
+              <p>
+                <span className="font-semibold">ZIP:</span> <code>12345</code>
+              </p>
             </div>
-          )}
+          </div>
+
+          <Elements
+            stripe={stripePromise}
+            options={{
+              clientSecret,
+              appearance: {
+                theme: "stripe",
+              },
+            }}
+          >
+            <CheckoutForm paymentId={order.id} />
+          </Elements>
         </div>
       </div>
     </div>

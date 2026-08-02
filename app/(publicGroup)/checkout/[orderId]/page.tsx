@@ -20,11 +20,14 @@ const CheckoutPage = async ({ params }: Props) => {
     .map((cookie) => `${cookie.name}=${cookie.value}`)
     .join("; ");
 
-  let order;
+  let paymentData = null;
 
   try {
-    const res = await axios.get(
-      `http://localhost:4000/api/payments/${orderId}`,
+    const res = await axios.post(
+      "http://localhost:4000/api/payments/create",
+      {
+        rentalOrderId: orderId,
+      },
       {
         headers: {
           Cookie: cookieHeader,
@@ -33,17 +36,23 @@ const CheckoutPage = async ({ params }: Props) => {
       },
     );
 
-    order = res.data.data;
+    paymentData = res.data.data;
   } catch (error) {
-    // console.error(error);
+    console.error(error);
     notFound();
   }
 
-  if (!order) {
+  if (!paymentData) {
     notFound();
   }
 
-  return <Checkout order={order} clientSecret={order.clientSecret} />;
+  return (
+    <Checkout
+      order={paymentData.rentalOrder}
+      clientSecret={paymentData.clientSecret}
+      paymentId={paymentData.paymentRecord.id}
+    />
+  );
 };
 
 export default CheckoutPage;
