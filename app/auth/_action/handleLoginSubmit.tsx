@@ -1,40 +1,36 @@
 "use client";
 
-import { toast } from "sonner";
 import axiosInstance from "@/lib/axios";
 import axios from "axios";
+import { toast } from "sonner";
 import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
-const handleSignupSubmit = async (
+const handleLoginSubmit = async (
   formData: FormData,
   router: AppRouterInstance,
 ) => {
-  const name = formData.get("name");
   const email = formData.get("email");
   const password = formData.get("password");
-  const role = formData.get("role");
 
   try {
-    const result = await axiosInstance.post(
-      "/api/auth/register",
+    const res = await axiosInstance.post(
+      "/api/auth/login",
       {
-        name,
         email,
         password,
-        role,
       },
       {
         withCredentials: true,
       },
     );
 
-    toast.success(result.data.message);
-    if (result.data.data.role === "customer") {
+    toast.success(res.data.message);
+    if (res.data.data.role === "customer") {
       router.push("/");
-    } else if (result.data.data.role === "provider") {
-      router.push("/");
+    } else if (res.data.data.role === "provider") {
+      router.push("/dashboard/provider/gears");
     } else {
-      router.push("/");
+      router.push("/dashboard/admin/orders");
     }
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -46,4 +42,4 @@ const handleSignupSubmit = async (
   }
 };
 
-export default handleSignupSubmit;
+export default handleLoginSubmit;

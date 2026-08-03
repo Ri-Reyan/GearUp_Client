@@ -54,7 +54,7 @@ export default function AddGearPage() {
 
       toast.success(res.data.message);
 
-      router.push("/provider/gears");
+      router.push("/dashboard/provider/gears");
     } catch (error) {
       if (axios.isAxiosError(error)) {
         toast.error(error.response?.data?.message || "Failed to add gear.");

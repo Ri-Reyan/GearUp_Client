@@ -46,7 +46,7 @@ export default function ReviewPage() {
 
       toast.success(res.data.message);
 
-      router.push("/dashboard");
+      router.push("/dashboard/customer");
     } catch (error) {
       if (axios.isAxiosError(error)) {
         toast.error(error.response?.data?.message);

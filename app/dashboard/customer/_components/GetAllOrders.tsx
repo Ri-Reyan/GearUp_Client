@@ -133,8 +133,8 @@ const GetAllOrders = () => {
                 </div>
 
                 <div className="pt-4 flex gap-3">
-                  {order.status === "CONFIRMED" && (
-                    <Link href={`/checkout/${order.id}`}>
+                  {order.status === "PENDING" && (
+                    <Link href={`/dashboard/customer/checkout/${order.id}`}>
                       <Button className="bg-blue-500 hover:bg-blue-600">
                         Pay Now
                       </Button>
@@ -142,7 +142,7 @@ const GetAllOrders = () => {
                   )}
 
                   {order.status === "RETURNED" && (
-                    <Link href={`/dashboard/review/${order.gear.id}`}>
+                    <Link href={`/dashboard/customer/review/${order.gear.id}`}>
                       <Button className="bg-amber-500 hover:bg-amber-600">
                         Leave Review
                       </Button>

@@ -9,17 +9,17 @@ import { useRouter } from "next/navigation";
 
 const links = [
   {
-    href: "/provider/gears",
+    href: "/dashboard/provider/gears",
     label: "Gears",
     icon: Package,
   },
   {
-    href: "/provider/orders",
+    href: "/dashboard/provider/orders",
     label: "Orders",
     icon: ShoppingBag,
   },
   {
-    href: "/provider/add-gear",
+    href: "/dashboard/provider/add-gear",
     label: "Add Gear",
     icon: PlusCircle,
   },
@@ -39,7 +39,7 @@ export default function ProviderSidebar() {
 
       toast.success(res.message);
 
-      router.push("/login");
+      router.push("/auth/login");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       toast.error("Logout failed:", err);

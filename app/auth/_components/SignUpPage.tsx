@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -20,9 +22,13 @@ import {
 import Link from "next/link";
 import handleSignupSubmit from "../_action/handleSignupSubmit";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { EyeClosed, EyeDashed } from "lucide-react";
 
 const SignUpPage = () => {
   const router = useRouter();
+
+  const [isShow, setIsShow] = useState<boolean>(false);
   return (
     <Card className="w-full max-w-sm">
       <CardHeader>
@@ -62,7 +68,20 @@ const SignUpPage = () => {
               <div className="flex items-center">
                 <Label htmlFor="password">Password</Label>
               </div>
-              <Input name="password" id="password" type="password" required />
+              <Input
+                name="password"
+                id="password"
+                type={`${isShow ? "text" : "password"}`}
+                required
+              />
+              <div
+                className="relative bottom-9 left-64 lg:left-72 "
+                onClick={() => {
+                  setIsShow((prev) => !prev);
+                }}
+              >
+                {isShow ? <EyeClosed /> : <EyeDashed />}
+              </div>
             </div>
 
             <div className="grid gap-2">

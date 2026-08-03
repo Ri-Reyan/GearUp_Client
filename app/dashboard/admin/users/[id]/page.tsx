@@ -22,7 +22,7 @@ export default function UpdateUserPage() {
 
       toast.success(res.data.message);
 
-      router.push("/admin/users");
+      router.push("/dashboard/admin/users");
     } catch {
       toast.error("Failed");
     }

@@ -17,6 +17,6 @@ export const config = {
   matcher: [
     "/dashboard/:path*",
     "/admin/:path*",
-    "http://localhost:3000/checkout/:path*",
+    "http://localhost:3000/dashboard/customer/checkout/:path*",
   ],
 };

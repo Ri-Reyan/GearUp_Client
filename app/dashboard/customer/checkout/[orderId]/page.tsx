@@ -1,8 +1,7 @@
 import { cookies } from "next/headers";
 import axios from "axios";
 import { notFound } from "next/navigation";
-
-import Checkout from "../../_action/Checkout";
+import Checkout from "@/app/(publicGroup)/_action/Checkout";
 
 type Props = {
   params: Promise<{

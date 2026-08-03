@@ -117,7 +117,10 @@ export default function ProviderGearPage() {
               </div>
 
               <div className="flex gap-3 pt-2">
-                <Link href={`/provider/gears/${gear.id}`} className="flex-1">
+                <Link
+                  href={`/dashboard/provider/gears/${gear.id}`}
+                  className="flex-1"
+                >
                   <Button className="w-full">Update</Button>
                 </Link>
 

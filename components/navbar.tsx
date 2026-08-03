@@ -38,7 +38,7 @@ const Navbar = () => {
       setUser(null);
       setIsOpen(false);
 
-      router.push("/login");
+      router.push("/auth/login");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       toast.error("Logout failed:", err);
@@ -68,7 +68,7 @@ const Navbar = () => {
               <UserRound color="white" />
             </Button>
           ) : (
-            <Link href={"/login"}>
+            <Link href={"/auth/login"}>
               <Button className="text-2xl p-2">Login</Button>
             </Link>
           )}

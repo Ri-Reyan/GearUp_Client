@@ -22,7 +22,7 @@ const GetMePage = ({ user, isOpen, handleLogout }: GetMePageProps) => {
       </h1>
       <Link
         className="hover:bg-[#3091AC] hover:text-white p-1 rounded-md cursor-pointer"
-        href={"/dashboard"}
+        href={"/dashboard/customer"}
       >
         Dashboard
       </Link>

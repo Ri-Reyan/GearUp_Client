@@ -16,7 +16,7 @@ const AdminSidebar = () => {
 
       toast.success(res.message);
 
-      router.push("/login");
+      router.push("/auth/login");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       toast.error("Logout failed:", err);
@@ -29,21 +29,21 @@ const AdminSidebar = () => {
       </div>
 
       <nav className="flex flex-col gap-3 md:p-4">
-        <Link href="/admin/users">
+        <Link href="/dashboard/admin/users">
           <Button variant="ghost" className="w-full justify-start">
             <Users className="mr-2 h-5 w-5" />
             Users
           </Button>
         </Link>
 
-        <Link href="/admin/gears">
+        <Link href="/dashboard/admin/gears">
           <Button variant="ghost" className="w-full justify-start">
             <Package className="mr-2 h-5 w-5" />
             Gears
           </Button>
         </Link>
 
-        <Link href="/admin/orders">
+        <Link href="/dashboard/admin/orders">
           <Button variant="ghost" className="w-full justify-start">
             <ShoppingCart className="mr-2 h-5 w-5" />
             Orders

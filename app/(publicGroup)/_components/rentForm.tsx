@@ -88,7 +88,7 @@ const RentForm = ({ gear }: Props) => {
 
       toast.success(res.data.message);
 
-      router.push(`/checkout/${res.data.data.id}`);
+      router.push(`/dashboard/customer/checkout/${res.data.data.id}`);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         toast.error(

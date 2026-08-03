@@ -69,7 +69,9 @@ const CheckoutForm = ({}: Props) => {
 
       const confirmedPayment = res.data.data;
 
-      router.replace(`/payment-success/${confirmedPayment.id}`);
+      router.replace(
+        `/dashboard/customer/payment-success/${confirmedPayment.id}`,
+      );
     } catch (err) {
       if (axios.isAxiosError(err)) {
         toast.error(

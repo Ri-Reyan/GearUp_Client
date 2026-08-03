@@ -73,7 +73,7 @@ export default function UsersPage() {
               </div>
 
               <Link
-                href={`/admin/users/${user.id}`}
+                href={`/dashboard/admin/users/${user.id}`}
                 className="mt-6 block rounded-xl bg-sky-600 py-3 text-center font-semibold text-white transition hover:bg-sky-700"
               >
                 Update status
