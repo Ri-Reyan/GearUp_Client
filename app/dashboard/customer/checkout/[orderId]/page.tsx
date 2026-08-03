@@ -1,8 +1,8 @@
 import { cookies } from "next/headers";
-import axios from "axios";
 import { notFound } from "next/navigation";
+
+import axiosInstance from "@/lib/axios";
 import Checkout from "@/app/(publicGroup)/_action/Checkout";
-import { getApiBaseUrl } from "@/lib/axios";
 
 type Props = {
   params: Promise<{
@@ -20,11 +20,12 @@ const CheckoutPage = async ({ params }: Props) => {
     .map((cookie) => `${cookie.name}=${cookie.value}`)
     .join("; ");
 
-  let paymentData = null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let paymentData: any = null;
 
   try {
-    const res = await axios.post(
-      `${getApiBaseUrl()}/api/payments/create`,
+    const res = await axiosInstance.post(
+      "/api/payments/create",
       {
         rentalOrderId: orderId,
       },
