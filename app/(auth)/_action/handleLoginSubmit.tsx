@@ -28,7 +28,7 @@ const handleLoginSubmit = async (
     if (res.data.data.role === "customer") {
       router.push("/");
     } else if (res.data.data.role === "provider") {
-      router.push("/");
+      router.push("/provider/gears");
     } else {
       router.push("/admin/orders");
     }
