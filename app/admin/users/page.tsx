@@ -32,11 +32,11 @@ export default function UsersPage() {
       <div className="mx-auto max-w-7xl">
         <h1 className="mb-10 text-center text-4xl font-bold">All Users</h1>
 
-        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3 pl-20">
+        <div className="grid gap-6 xl:grid-cols-3 pl-20">
           {users.map((user) => (
             <div
               key={user.id}
-              className="rounded-2xl border bg-white md:w-full p-6 shadow transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+              className="rounded-2xl border bg-white md:w-72 lg:w-full p-6 shadow transition-all duration-300 hover:-translate-y-1 hover:shadow-xl md:mx-50"
             >
               <div className="mb-5 flex items-center justify-between">
                 <div>

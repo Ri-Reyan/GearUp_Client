@@ -29,7 +29,7 @@ export default function UpdateUserPage() {
   };
 
   return (
-    <div className="mx-32 md:mx-auto w-1/2 md:w-full mt-20 max-w-lg rounded-lg border p-6">
+    <div className="mx-32 md:mx-72 lg:mx-auto w-1/2 lg:w-full mt-20 max-w-lg rounded-lg border p-6">
       <h1 className="mb-8 text-md md:text-3xl whitespace-nowrap text-center md:whitespace-normal font-bold">
         Update User Status
       </h1>
