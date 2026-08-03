@@ -29,8 +29,10 @@ export default function UpdateUserPage() {
   };
 
   return (
-    <div className="mx-auto mt-20 max-w-lg rounded-lg border p-8">
-      <h1 className="mb-8 text-3xl font-bold">Update User Status</h1>
+    <div className="mx-32 md:mx-auto w-1/2 md:w-full mt-20 max-w-lg rounded-lg border p-6">
+      <h1 className="mb-8 text-md md:text-3xl whitespace-nowrap text-center md:whitespace-normal font-bold">
+        Update User Status
+      </h1>
 
       <Button onClick={handleUpdate} className="w-full">
         Toggle Status

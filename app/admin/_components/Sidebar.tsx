@@ -6,12 +6,12 @@ import { Users, Package, ShoppingCart } from "lucide-react";
 
 const AdminSidebar = () => {
   return (
-    <aside className="fixed left-0 top-0 h-screen w-64 border-r bg-white shadow-md">
-      <div className="border-b p-6">
+    <aside className="fixed left-0 top-0 h-screen w-1/4 md:w-64 lg:w-64 border-r bg-white shadow-md">
+      <div className="border-b p-2 md:p-6">
         <h1 className="text-2xl font-bold text-sky-600">Admin Panel</h1>
       </div>
 
-      <nav className="flex flex-col gap-3 p-4">
+      <nav className="flex flex-col gap-3 md:p-4">
         <Link href="/admin/users">
           <Button variant="ghost" className="w-full justify-start">
             <Users className="mr-2 h-5 w-5" />

@@ -28,43 +28,60 @@ export default function UsersPage() {
   }, []);
 
   return (
-    <div className="p-8">
-      <h1 className="mb-6 text-3xl font-bold">All Users</h1>
+    <div className="min-h-screen bg-slate-100 p-8">
+      <div className="mx-auto max-w-7xl">
+        <h1 className="mb-10 text-center text-4xl font-bold">All Users</h1>
 
-      <table className="w-full border">
-        <thead className="bg-gray-100">
-          <tr>
-            <th className="border p-3">Name</th>
-            <th className="border p-3">Email</th>
-            <th className="border p-3">Role</th>
-            <th className="border p-3">Status</th>
-            <th className="border p-3">Action</th>
-          </tr>
-        </thead>
-
-        <tbody>
+        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3 pl-20">
           {users.map((user) => (
-            <tr key={user.id}>
-              <td className="border p-3">{user.name}</td>
+            <div
+              key={user.id}
+              className="rounded-2xl border bg-white md:w-full p-6 shadow transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+            >
+              <div className="mb-5 flex items-center justify-between">
+                <div>
+                  <h2 className="text-xl font-bold">{user.name}</h2>
 
-              <td className="border p-3">{user.email}</td>
+                  <p className="text-sm text-gray-500 break-all">
+                    {user.email}
+                  </p>
+                </div>
 
-              <td className="border p-3">{user.role}</td>
-
-              <td className="border p-3">{user.accountStatus}</td>
-
-              <td className="border p-3">
-                <Link
-                  href={`/admin/users/${user.id}`}
-                  className="rounded bg-sky-600 px-4 py-2 text-white"
+                <div
+                  className={`rounded-full px-3 py-1 text-xs font-semibold ${
+                    user.accountStatus === "ACTIVE"
+                      ? "bg-green-100 text-green-700"
+                      : "bg-red-100 text-red-700"
+                  }`}
                 >
-                  Update
-                </Link>
-              </td>
-            </tr>
+                  {user.accountStatus}
+                </div>
+              </div>
+
+              <div className="space-y-3 rounded-xl bg-slate-50 p-4">
+                <div className="flex justify-between">
+                  <span className="text-gray-500">Role</span>
+
+                  <span className="font-semibold uppercase">{user.role}</span>
+                </div>
+
+                <div className="flex flex-col justify-between">
+                  <span className="text-gray-500">User ID:</span>
+
+                  <span className="max-w-45 truncate text-sm">{user.id}</span>
+                </div>
+              </div>
+
+              <Link
+                href={`/admin/users/${user.id}`}
+                className="mt-6 block rounded-xl bg-sky-600 py-3 text-center font-semibold text-white transition hover:bg-sky-700"
+              >
+                Update status
+              </Link>
+            </div>
           ))}
-        </tbody>
-      </table>
+        </div>
+      </div>
     </div>
   );
 }
