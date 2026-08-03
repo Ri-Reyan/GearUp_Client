@@ -30,7 +30,7 @@ const handleLoginSubmit = async (
     } else if (res.data.data.role === "provider") {
       router.push("/");
     } else {
-      router.push("/");
+      router.push("/admin/orders");
     }
   } catch (error) {
     if (axios.isAxiosError(error)) {
