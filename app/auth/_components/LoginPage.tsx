@@ -68,7 +68,7 @@ const LoginPage = () => {
         </form>
       </CardContent>
       <CardFooter className="flex-col gap-2">
-        <Link href={"/signup"}>
+        <Link href={"/auth/signup"}>
           <CardAction>
             <Button className="text-center" variant="link">
               Don&apos;t have an account? {""} Sign Up

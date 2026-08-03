@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import axios from "axios";
 import { notFound } from "next/navigation";
 import Checkout from "@/app/(publicGroup)/_action/Checkout";
+import { getApiBaseUrl } from "@/lib/axios";
 
 type Props = {
   params: Promise<{
@@ -23,7 +24,7 @@ const CheckoutPage = async ({ params }: Props) => {
 
   try {
     const res = await axios.post(
-      "http://localhost:4000/api/payments/create",
+      `${getApiBaseUrl()}/api/payments/create`,
       {
         rentalOrderId: orderId,
       },

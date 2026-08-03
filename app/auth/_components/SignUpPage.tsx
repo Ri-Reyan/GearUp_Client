@@ -105,7 +105,7 @@ const SignUpPage = () => {
         </form>
       </CardContent>
       <CardFooter className="flex-col gap-2">
-        <Link href={"/login"}>
+        <Link href={"/auth/login"}>
           <CardAction>
             <Button variant="link">Already have one? Login</Button>
           </CardAction>

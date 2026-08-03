@@ -4,6 +4,7 @@ import axios from "axios";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
+import { getApiBaseUrl } from "@/lib/axios";
 
 type Props = {
   params: Promise<{
@@ -25,7 +26,7 @@ const PaymentSuccessPage = async ({ params }: Props) => {
 
   try {
     const res = await axios.get(
-      `http://localhost:4000/api/payments/success/${paymentId}`,
+      `${getApiBaseUrl()}/api/payments/success/${paymentId}`,
       {
         headers: {
           Cookie: cookieHeader,
