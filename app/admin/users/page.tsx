@@ -55,7 +55,7 @@ export default function UsersPage() {
 
               <td className="border p-3">
                 <Link
-                  href={`/dashboard/users/${user.id}`}
+                  href={`/admin/users/${user.id}`}
                   className="rounded bg-sky-600 px-4 py-2 text-white"
                 >
                   Update
