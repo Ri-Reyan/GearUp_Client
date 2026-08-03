@@ -146,7 +146,23 @@ export default function ProviderOrdersPage() {
               <div className="space-y-4 md:w-64">
                 <p className="font-semibold">Current Status</p>
 
-                <div className="rounded-lg bg-slate-100 p-3 text-center font-bold">
+                <div
+                  className={`rounded-lg  p-3 text-center font-bold ${
+                    order.status === "PLACED"
+                      ? "bg-yellow-500"
+                      : order.status === "CONFIRMED"
+                        ? "bg-blue-500"
+                        : order.status === "PAID"
+                          ? "bg-purple-500"
+                          : order.status === "PICKED_UP"
+                            ? "bg-green-500"
+                            : order.status === "RETURNED"
+                              ? "bg-gray-500"
+                              : order.status === "CANCELLED"
+                                ? "bg-red-500"
+                                : "bg-slate-500"
+                  }`}
+                >
                   {order.status}
                 </div>
 

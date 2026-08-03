@@ -27,19 +27,6 @@ export default function OrdersPage() {
     fetchOrders();
   }, []);
 
-  const statusColor = (status: string) => {
-    switch (status) {
-      case "PENDING":
-        return "bg-yellow-100 text-yellow-700";
-      case "CONFIRMED":
-        return "bg-green-100 text-green-700";
-      case "CANCELLED":
-        return "bg-red-100 text-red-700";
-      default:
-        return "bg-slate-100 text-slate-700";
-    }
-  };
-
   return (
     <div className="min-h-screen bg-slate-50 p-8">
       <h1 className="mb-8 text-center text-4xl font-bold md:mx-60 md:whitespace-nowrap">
@@ -51,7 +38,7 @@ export default function OrdersPage() {
           No Orders Found
         </div>
       ) : (
-        <div className="grid gap-6 xl:grid-cols-3">
+        <div className="grid gap-6 w-1/2">
           {orders.map((order) => (
             <div
               key={order.id}
@@ -64,8 +51,21 @@ export default function OrdersPage() {
                 </h2>
 
                 <span
-                  className={`rounded-full px-3 py-1 text-xs font-semibold ${statusColor(
-                    order.status,
+                  className={`rounded-full px-3 py-1 text-xs font-semibold ${
+                    order.status === "PLACED"
+                      ? "bg-yellow-500"
+                      : order.status === "CONFIRMED"
+                        ? "bg-blue-500"
+                        : order.status === "PAID"
+                          ? "bg-purple-500"
+                          : order.status === "PICKED_UP"
+                            ? "bg-green-500"
+                            : order.status === "RETURNED"
+                              ? "bg-gray-500"
+                              : order.status === "CANCELLED"
+                                ? "bg-red-500"
+                                : "bg-slate-500"
+                  }
                   )}`}
                 >
                   {order.status}

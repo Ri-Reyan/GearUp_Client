@@ -44,12 +44,6 @@ export default function ProviderGearPage() {
   }, [fetchGears]);
 
   const handleDelete = async (gearId: string) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this gear?",
-    );
-
-    if (!confirmDelete) return;
-
     try {
       const res = await axiosInstance.delete(`/api/provider/gear/${gearId}`, {
         withCredentials: true,

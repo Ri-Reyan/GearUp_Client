@@ -77,9 +77,21 @@ const GetAllOrders = () => {
                   <h2 className="text-2xl font-bold">{order.gear.name}</h2>
 
                   <Badge
-                    variant={
-                      order.status === "CONFIRMED" ? "default" : "secondary"
-                    }
+                    className={`${
+                      order.status === "PLACED"
+                        ? "bg-yellow-500"
+                        : order.status === "CONFIRMED"
+                          ? "bg-blue-500"
+                          : order.status === "PAID"
+                            ? "bg-purple-500"
+                            : order.status === "PICKED_UP"
+                              ? "bg-green-500"
+                              : order.status === "RETURNED"
+                                ? "bg-gray-500"
+                                : order.status === "CANCELLED"
+                                  ? "bg-red-500"
+                                  : "bg-slate-500"
+                    }`}
                   >
                     {order.status}
                   </Badge>
@@ -120,12 +132,20 @@ const GetAllOrders = () => {
                   </div>
                 </div>
 
-                <div className="pt-4">
-                  {order.status === "CONFIRMED" ? (
-                    <></>
-                  ) : (
+                <div className="pt-4 flex gap-3">
+                  {order.status === "CONFIRMED" && (
                     <Link href={`/checkout/${order.id}`}>
-                      <Button>Checkout</Button>
+                      <Button className="bg-blue-500 hover:bg-blue-600">
+                        Pay Now
+                      </Button>
+                    </Link>
+                  )}
+
+                  {order.status === "RETURNED" && (
+                    <Link href={`/dashboard/review/${order.gear.id}`}>
+                      <Button className="bg-amber-500 hover:bg-amber-600">
+                        Leave Review
+                      </Button>
                     </Link>
                   )}
                 </div>

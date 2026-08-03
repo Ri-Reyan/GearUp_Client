@@ -77,7 +77,7 @@ export default function AddGearPage() {
 
             <Input
               name="name"
-              placeholder="Canon EOS R6"
+              placeholder="Gear name"
               value={form.name}
               onChange={handleChange}
               required
@@ -89,19 +89,19 @@ export default function AddGearPage() {
 
             <Input
               name="brand"
-              placeholder="Canon"
+              placeholder="Gear brand"
               value={form.brand}
               onChange={handleChange}
               required
             />
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-2 ">
             <Label>Category</Label>
 
             <Input
               name="tag"
-              placeholder="Camera"
+              placeholder="Gear category"
               value={form.tag}
               onChange={handleChange}
               required
@@ -114,7 +114,7 @@ export default function AddGearPage() {
             <Input
               type="number"
               name="price"
-              placeholder="50"
+              placeholder="00"
               value={form.price}
               onChange={handleChange}
               required

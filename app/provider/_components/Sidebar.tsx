@@ -2,7 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Package, ShoppingBag, PlusCircle } from "lucide-react";
+import { Package, ShoppingBag, PlusCircle, LogOut } from "lucide-react";
+import { logout } from "@/services/logout.service";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const links = [
   {
@@ -20,10 +23,28 @@ const links = [
     label: "Add Gear",
     icon: PlusCircle,
   },
+  {
+    label: "Log out",
+    icon: LogOut,
+  },
 ];
 
 export default function ProviderSidebar() {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      const res = await logout();
+
+      toast.success(res.message);
+
+      router.push("/login");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
+      toast.error("Logout failed:", err);
+    }
+  };
 
   return (
     <aside className="w-72 bg-white border-r shadow-lg">
@@ -37,8 +58,9 @@ export default function ProviderSidebar() {
 
           return (
             <Link
-              key={item.href}
-              href={item.href}
+              onClick={!item.href ? handleLogout : undefined}
+              key={item.href || item.label}
+              href={item.href || ""}
               className={`flex items-center gap-4 rounded-xl px-5 py-4 transition
 
               ${
