@@ -14,6 +14,7 @@ type Props = {
 };
 
 type PaymentData = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   rentalOrder: any;
   clientSecret: string;
   paymentRecord: {
